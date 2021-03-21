@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.springframework.stereotype.Component;
 
+@Component
 public class MainPage extends BaseClass {
     private By user_menu_css=By.cssSelector(".header2-menu__item-wrapper__username");
     private String  xpathtab_menu="//*[contains(@class,'header2-menu_main')]//p[text()='%s']";

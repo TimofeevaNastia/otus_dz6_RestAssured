@@ -5,6 +5,7 @@ import dz5.Pages.Сategory;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.List;
@@ -13,7 +14,8 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TeacherСategory extends BaseClass {
 
-    private Сategory сategory = new Сategory();
+    @Autowired
+    private Сategory сategory;
 
     @Then("I should see page became of teacher with title {string}")
     public void iShouldSeePageCalendarOfCourse(String title) {

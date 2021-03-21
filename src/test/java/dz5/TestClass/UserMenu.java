@@ -5,12 +5,15 @@ import dz5.Pages.MainPage;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static junit.framework.TestCase.assertEquals;
 
 
 public class UserMenu extends BaseClass {
-    private MainPage mainPage = new MainPage();
+
+    @Autowired
+    private MainPage mainPage;
 
     @When("I navigate in username")
     public void navigateInUsername() {

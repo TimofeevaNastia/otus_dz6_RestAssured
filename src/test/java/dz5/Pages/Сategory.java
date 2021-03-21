@@ -4,6 +4,7 @@ import dz5.Driver.BaseClass;
 import org.openqa.selenium.By;
 import org.springframework.stereotype.Component;
 
+@Component
 public class Сategory extends BaseClass {
     private By byListCourses=By.cssSelector(".lessons>a");
     private By byLabelCountCourses=By.cssSelector(".title-new__info-item");

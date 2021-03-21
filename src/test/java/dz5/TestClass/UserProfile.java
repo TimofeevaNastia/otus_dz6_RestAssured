@@ -5,11 +5,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class UserProfile  extends BaseClass {
-    private MainPage mainPage = new MainPage();
+
+    @Autowired
+    private MainPage mainPage;
 
     @Given("I authorization")
     public void auth() {

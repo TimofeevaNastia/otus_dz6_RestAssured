@@ -12,7 +12,8 @@ import static org.junit.Assert.assertTrue;
 public class ProgrammingСategory  extends BaseClass {
 
 
-    private Сategory сategory = new Сategory();
+    @Autowired
+    private Сategory сategory;
 
     @Then("I should see {int} courses in list of section")
     public void checkCountOfCourseOfSection(int count) {

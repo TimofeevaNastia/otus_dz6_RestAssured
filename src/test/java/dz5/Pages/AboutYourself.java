@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.stereotype.Component;
 
 
-
+@Component
 public class AboutYourself extends BaseClass {
     private String cssTabList="[class='nav-sidebar'] a";
     private String cssTabName=cssTabList+"[title='%s']";

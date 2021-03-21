@@ -12,7 +12,8 @@ import static junit.framework.TestCase.assertEquals;
 
 public class NavigationInCategory extends BaseClass {
 
-    private MainPage mainPage= new MainPage();
+    @Autowired
+    private MainPage mainPage;
 
     @When("I navigate in {string}")
     public void navigateInUsername(String tabName) {

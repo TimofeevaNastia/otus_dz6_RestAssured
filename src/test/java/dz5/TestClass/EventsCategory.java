@@ -9,7 +9,8 @@ import static junit.framework.TestCase.assertEquals;
 
 public class EventsCategory extends BaseClass{
 
-    private Сategory сategory = new Сategory();
+    @Autowired
+    private Сategory сategory;
 
     @Then("I should see page calendar of courses with title {string}")
     public void iShouldSeePageCalendarOfCourse(String title) {
