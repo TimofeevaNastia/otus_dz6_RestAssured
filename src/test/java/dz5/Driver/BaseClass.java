@@ -1,22 +1,18 @@
+package dz5.Driver;
 import config.ServerConfig;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import dz5.Pages.MainPage;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class BaseClass {
 
     protected static WebDriver driver;
-    public Logger logger = LogManager.getLogger(TestClass.class);
+    public Logger logger = LogManager.getLogger(MainPage.class);
     public ServerConfig cfg = ConfigFactory.create(ServerConfig.class);
 
     //ввод данных в поле (с предварительной очисткой), где text - вводимое значениее, by - локатор поля ввода
@@ -45,23 +41,23 @@ public class BaseClass {
 
     }
 
-    @Before
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        logger.info("Драйвер поднят");
+    //@Before
+    public void setUp(String url) {
+        //WebDriverManager.chromedriver().setup();
+        //logger.info("Драйвер поднят");
         /*//если появляется капча
         ChromeOptions options = new ChromeOptions();
         options.addArguments("user-data-dir=~AppData\\Local\\Google\\Chrome\\User Data");
         options.addArguments("--profile-directory=Default");
         driver = new ChromeDriver(options);
         */
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.get(cfg.url1());
+      //  driver = new ChromeDriver();
+       // driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.get(url);
         driver.manage().window().maximize();
     }
 
-    @After
+    //@After
     public void setDown() {
         if (driver != null) {
             driver.quit();
@@ -72,10 +68,11 @@ public class BaseClass {
 
     //клик на элемент
     public void click(By element){
-        WebElement element2 = new WebDriverWait(driver, 10).until(elementToBeClickable(element));
-        int attempts = 0;
-        while(attempts < 3) {
-            try {
+        WebElement element2 = new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class).until(elementToBeClickable(element));
+        element2.click();
+        //int attempts = 0;
+       /* while(attempts < 3) {
+        try {
                 element2.click();
                 break;
             }
@@ -86,6 +83,6 @@ public class BaseClass {
                 logger.error("Ошибка StaleElementReferenceException клика на " + element2);
             }
             attempts++;
-        }
+        }*/
     }
 }
