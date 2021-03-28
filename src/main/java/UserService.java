@@ -15,23 +15,28 @@ public class UserService {
     private ResponseSpecification respSpec;
 
     public UserService( ){
-        reqSpec=given()
+        reqSpec=given()  //вынесены повторяющиеся спецификация для post запроса
                 .baseUri(URI) //адрес, куда отправляется запрос
                 .basePath(basePath)
                 .contentType(ContentType.JSON); //тип Json, XML  т.д
-        respSpec=new ResponseSpecBuilder().expectStatusCode(200).build();// вынесена повторяющаяся проверка на код 200
+        //respSpec=new ResponseSpecBuilder().expectStatusCode(200).build();// вынесена повторяющаяся проверка на код 200 (1-ый вариант)
+        respSpec=given().then().statusCode(200);// вынесена повторяющаяся проверка на код 200 (2-ой вариант)
     }
 
+    //получение спецификации
     public ResponseSpecification getResponseSpec(){
         return this.respSpec;
     }
-    public Response createUser(User user){
-return
-        given(reqSpec)
-        .body(user)
-        .when() //куда отправляем
-        .post(); //вид запроса
+
+    //post запрос создания пользователя
+    public Response createUser(User user) {
+        return
+                given(reqSpec)
+                        .body(user)
+                        .when()
+                        .post(); //вид запроса
     }
+    //get запрос получения пользователя по username
     public Response getUser(String username){
         return
                 given().

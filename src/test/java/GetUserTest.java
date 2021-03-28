@@ -19,7 +19,7 @@ public class GetUserTest {
 
         User user=userService.getUser(userExpected.getUsername())
                 .then()
-                .spec(userService.getResponseSpec())//проверка, что код ответа 200
+                .spec(userService.getResponseSpec())//повторящая проверка на код 200 вынесена в ResponseSpecification
                 .extract()
                 .body()
                 .as(User.class); //преобразование ответа в класс User
@@ -27,18 +27,18 @@ public class GetUserTest {
         assertEquals(userExpected.toString(),user.toString()); //сравнение полуенного пользователя с ожидаемым
     }
 
-    @Test//второй вариант: получение пользователя по username и проверка lastName полученного пользователя
-    public void getUserTest2(){
+    @Test//второй вариант: получение пользователя по username и проверка firstName полученного пользователя
+    public void getUserTestFirstName(){
         userService.getUser("UserNameTest")
                 .then()
-                .spec(userService.getResponseSpec())//проверка, что код ответа 200
-                .body("lastName",is("Иванов"));//проверка поля lastName в ответе
+                .spec(userService.getResponseSpec())//повторящая проверка на код 200 вынесена в ResponseSpecification
+                .body("firstName",is("Иван"));//проверка поля lastName в ответе
 
     }
 
 
     @Test//третий вариант: получение пользователя по username и проверка lastName полученного пользователя путём извлечения username из json
-    public void getUserTest3() {
+    public void getUserTestLastName() {
         String lastName = userService.getUser("UserNameTest")
                 .jsonPath()
                 .get("lastName");

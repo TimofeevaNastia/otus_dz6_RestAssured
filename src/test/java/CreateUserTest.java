@@ -7,7 +7,7 @@ public class CreateUserTest  {
     protected UserService userService = new UserService();
 
 
-    @Test//первый вариант: создание пользователя и проверка поля type в ответе
+    @Test//первый вариант: проверка успешного создания пользователя и проверка поля type в ответе
     public void createUserTest(){
         User userSet = User.builder()
                 .email("test@email.ru")
@@ -17,11 +17,11 @@ public class CreateUserTest  {
                 .build();
         userService.createUser(userSet)
                 .then()
-                .spec(userService.getResponseSpec())
+                .spec(userService.getResponseSpec()) //повторящая проверка на код 200 вынесена в ResponseSpecification
                 .body("type",equalTo("unknown"));
     }
 
-    @Test//второй вариант: создание пользователя и проверка кода в ответе с помощью преобразования ответа json в класс
+    @Test//второй вариант:  проверка успешного создания с помощью преобразования ответа json в класс
     public void createUserTest2(){
         User userSet = User.builder()
                 .email("test@email.ru")
