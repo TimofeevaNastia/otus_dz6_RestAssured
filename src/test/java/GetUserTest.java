@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetUserTest {
+    //ветка 2
     protected UserService userService = new UserService();
 
     @Test //первый вариант: получение пользователя по username и сравнение полученного пользователя с ожидаемым
